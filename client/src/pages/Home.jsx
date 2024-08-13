@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import useAuth from '../hooks/useAuth'
 import useUser from '../hooks/useUser';
+import EthereumWallet from '../components/EthereumWallet';
 
 export default function Home() {
     const { user } = useAuth();
@@ -15,7 +16,11 @@ export default function Home() {
             <h2>
                 <div className='row'>
                     <div className="mb-12">
-                        {user?.email !== undefined ? 'List user Ethereum balance' : 'Please login first'}
+                        {user?.email !== undefined ? 
+                        <div className='flex flex-column'>
+                            <h1>List user Ethereum balance</h1>
+                            <EthereumWallet address={user?.eth_pk ?? ""} />
+                        </div> : 'Please login first'}
                     </div>
                 </div>
             </h2>
